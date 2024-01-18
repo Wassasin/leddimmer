@@ -1849,7 +1849,7 @@
   (symbol (lib_id "power:VBUS") (at 95.25 87.63 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid eb8e921c-be3b-4a27-85a2-1a2689b366cc)
-    (property "Reference" "#PWR0502" (at 95.25 91.44 0)
+    (property "Reference" "#PWR0403" (at 95.25 91.44 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VBUS" (at 95.25 82.55 0)
@@ -1864,9 +1864,6 @@
     (pin "1" (uuid 447c4dc7-8841-4a62-8ebb-53ab491286d1))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/8c16082e-d807-4397-bdb5-0f18b2aedd2d"
-          (reference "#PWR0502") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/e9e13a02-4398-4024-aa40-c10eab1b7d89"
           (reference "#PWR0403") (unit 1)
         )

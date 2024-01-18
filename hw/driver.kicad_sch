@@ -1267,9 +1267,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/e9e13a02-4398-4024-aa40-c10eab1b7d89"
-          (reference "R403") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R212") (unit 1)
         )
@@ -1283,7 +1280,7 @@
   (symbol (lib_id "Device:R") (at 97.79 124.46 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0e34731f-01b4-4311-b92f-835fd185d4c7)
-    (property "Reference" "R1" (at 93.345 123.19 0)
+    (property "Reference" "R203" (at 93.345 123.19 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1Ohm" (at 93.345 125.095 0)
@@ -1302,9 +1299,6 @@
     (pin "1" (uuid f3c85fc3-01d5-4d73-80d9-58d3a5fe11e3))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "R1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R203") (unit 1)
         )
@@ -1436,9 +1430,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "R3") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R211") (unit 1)
         )
@@ -1473,9 +1464,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "C1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C205") (unit 1)
         )
@@ -1489,7 +1477,7 @@
   (symbol (lib_id "power:GND") (at 220.345 95.885 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 28dfb8a4-0e86-4179-95af-f543c57e5383)
-    (property "Reference" "#PWR06" (at 220.345 102.235 0)
+    (property "Reference" "#PWR0216" (at 220.345 102.235 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 220.345 100.965 0)
@@ -1504,9 +1492,6 @@
     (pin "1" (uuid e86a1227-b6d5-4ba0-ade6-ba5b46946fb2))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR06") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0216") (unit 1)
         )
@@ -1582,9 +1567,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "C1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C210") (unit 1)
         )
@@ -1622,9 +1604,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "C1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C201") (unit 1)
         )
@@ -1638,7 +1617,7 @@
   (symbol (lib_id "power:GND") (at 219.71 51.435 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3ec03322-8cd8-4dce-93c7-ddd3549a60da)
-    (property "Reference" "#PWR06" (at 219.71 57.785 0)
+    (property "Reference" "#PWR0215" (at 219.71 57.785 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 219.71 56.515 0)
@@ -1653,9 +1632,6 @@
     (pin "1" (uuid d52b61be-76e4-4afe-9a41-77e9954d9040))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR06") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0215") (unit 1)
         )
@@ -1698,9 +1674,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/e9e13a02-4398-4024-aa40-c10eab1b7d89"
-          (reference "R403") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R213") (unit 1)
         )
@@ -1714,7 +1687,7 @@
   (symbol (lib_id "power:GND") (at 255.905 45.72 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4675b3f6-2bbb-4550-91e1-872e50bfe847)
-    (property "Reference" "#PWR06" (at 255.905 52.07 0)
+    (property "Reference" "#PWR0219" (at 255.905 52.07 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 255.905 50.8 0)
@@ -1729,9 +1702,6 @@
     (pin "1" (uuid 006c3129-f40a-4d6c-ab4c-3b3be9210b45))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR06") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0219") (unit 1)
         )
@@ -1769,9 +1739,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/8c16082e-d807-4397-bdb5-0f18b2aedd2d"
-          (reference "C504") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C208") (unit 1)
         )
@@ -1783,7 +1750,7 @@
   )
 
   (symbol (lib_id "Device:R") (at 52.07 170.815 180) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
+    (in_bom no) (on_board yes) (dnp yes)
     (uuid 49b8bdc7-d422-46eb-aa59-d6f3d990a03a)
     (property "Reference" "R306" (at 53.975 169.545 0)
       (effects (font (size 1.27 1.27)) (justify right))
@@ -1809,9 +1776,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "R2") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R202") (unit 1)
         )
@@ -1849,9 +1813,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/8c16082e-d807-4397-bdb5-0f18b2aedd2d"
-          (reference "C504") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C209") (unit 1)
         )
@@ -1865,7 +1826,7 @@
   (symbol (lib_id "power:GND") (at 52.07 175.895 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 52810cd7-4a64-4506-8309-228070444eb7)
-    (property "Reference" "#PWR05" (at 52.07 182.245 0)
+    (property "Reference" "#PWR0203" (at 52.07 182.245 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 52.07 180.975 0)
@@ -1880,9 +1841,6 @@
     (pin "1" (uuid 0f78e7b4-ec50-4e95-9f1f-cf84903c5c4c))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR05") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0203") (unit 1)
         )
@@ -1896,7 +1854,7 @@
   (symbol (lib_id "power:GND") (at 76.835 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5f480254-87b4-4cb5-97fb-379056683527)
-    (property "Reference" "#PWR06" (at 76.835 69.85 0)
+    (property "Reference" "#PWR0207" (at 76.835 69.85 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 76.835 68.58 0)
@@ -1911,9 +1869,6 @@
     (pin "1" (uuid dd7e106b-97ce-4247-a675-4a95e85b2685))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR06") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0207") (unit 1)
         )
@@ -1927,7 +1882,7 @@
   (symbol (lib_id "Driver_FET:UCC27511ADBV") (at 88.9 168.275 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5fecb9e9-8616-44a0-abce-a340e463bb8b)
-    (property "Reference" "U1" (at 90.805 156.21 0)
+    (property "Reference" "U202" (at 90.805 156.21 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "UCC27511DBVR" (at 90.805 158.75 0)
@@ -1950,9 +1905,6 @@
     (pin "3" (uuid 6a73bfa7-420a-4a20-9a50-7e21dfe87c50))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "U1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "U202") (unit 1)
         )
@@ -1987,9 +1939,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "C1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C206") (unit 1)
         )
@@ -2003,7 +1952,7 @@
   (symbol (lib_id "power:GND") (at 76.2 175.895 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 6391c65d-0351-4104-b7e5-ce087fcdd622)
-    (property "Reference" "#PWR04" (at 76.2 182.245 0)
+    (property "Reference" "#PWR0206" (at 76.2 182.245 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 76.2 180.975 0)
@@ -2018,9 +1967,6 @@
     (pin "1" (uuid dd3d1c6c-5ea8-4f9d-9f0c-f8f883ce266b))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR04") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0206") (unit 1)
         )
@@ -2034,7 +1980,7 @@
   (symbol (lib_id "Device:R") (at 113.03 56.515 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 718c290b-4911-4b9c-b1a3-8c23534245d3)
-    (property "Reference" "R1" (at 117.475 55.245 0)
+    (property "Reference" "R210" (at 117.475 55.245 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1Ohm" (at 117.475 57.15 0)
@@ -2053,9 +1999,6 @@
     (pin "1" (uuid 2d92fcf1-21ad-4da4-9a1d-74a731fe45c8))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "R1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R210") (unit 1)
         )
@@ -2069,7 +2012,7 @@
   (symbol (lib_id "power:GND") (at 49.53 60.325 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 731a8e3f-4565-4825-81c1-c9670c9c2cb7)
-    (property "Reference" "#PWR06" (at 49.53 66.675 0)
+    (property "Reference" "#PWR0202" (at 49.53 66.675 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 49.53 65.405 0)
@@ -2084,9 +2027,6 @@
     (pin "1" (uuid 959d99e6-6f9e-45bd-a473-5263844592f9))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR06") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0202") (unit 1)
         )
@@ -2100,7 +2040,7 @@
   (symbol (lib_id "Device:R") (at 45.085 165.735 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 78f7e8cc-baa2-4b9a-8080-e1b07a381960)
-    (property "Reference" "R6" (at 45.085 160.655 90)
+    (property "Reference" "R201" (at 45.085 160.655 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1Ohm" (at 45.085 162.56 90)
@@ -2119,9 +2059,6 @@
     (pin "1" (uuid 2d2d3f47-6f2f-42ed-af44-744c3797b93a))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "R6") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R201") (unit 1)
         )
@@ -2135,7 +2072,7 @@
   (symbol (lib_id "power:GND") (at 133.985 173.355 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 797f3f1f-9146-440b-afdb-978b40d58541)
-    (property "Reference" "#PWR02" (at 133.985 179.705 0)
+    (property "Reference" "#PWR0214" (at 133.985 179.705 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 133.985 178.435 0)
@@ -2150,9 +2087,6 @@
     (pin "1" (uuid 8fdec9ff-005d-458a-96af-4cb152752b48))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR02") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0214") (unit 1)
         )
@@ -2166,7 +2100,7 @@
   (symbol (lib_id "Device:R") (at 109.855 170.815 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7993f7b0-da80-46e8-9187-24ee5a40da91)
-    (property "Reference" "R5" (at 109.855 175.895 90)
+    (property "Reference" "R209" (at 109.855 175.895 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1Ohm" (at 109.855 173.99 90)
@@ -2185,9 +2119,6 @@
     (pin "1" (uuid f7abfe24-b8d3-46bd-81d6-da183d5ac742))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "R5") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R209") (unit 1)
         )
@@ -2201,7 +2132,7 @@
   (symbol (lib_id "power:GND") (at 73.025 149.86 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 81cbf927-f430-45a7-a15e-6cd3897eefa6)
-    (property "Reference" "#PWR08" (at 73.025 156.21 0)
+    (property "Reference" "#PWR0205" (at 73.025 156.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 73.025 154.94 0)
@@ -2216,9 +2147,6 @@
     (pin "1" (uuid 78d2a246-0d5b-4698-99f1-ae92e19b439d))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR08") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0205") (unit 1)
         )
@@ -2232,7 +2160,7 @@
   (symbol (lib_id "power:GND") (at 88.9 175.895 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 830ea6a8-bfb0-44d0-ba19-692798d8a88c)
-    (property "Reference" "#PWR03" (at 88.9 182.245 0)
+    (property "Reference" "#PWR0209" (at 88.9 182.245 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 88.9 180.975 0)
@@ -2247,9 +2175,6 @@
     (pin "1" (uuid fad3cd68-53de-4a7f-9bea-e47b32e0cd2f))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR03") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0209") (unit 1)
         )
@@ -2343,9 +2268,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/8c16082e-d807-4397-bdb5-0f18b2aedd2d"
-          (reference "C511") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C207") (unit 1)
         )
@@ -2359,7 +2281,7 @@
   (symbol (lib_id "power:GND") (at 80.01 149.86 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a9316bd4-bc64-4b75-8b0e-a35ed0dcf3c4)
-    (property "Reference" "#PWR07" (at 80.01 156.21 0)
+    (property "Reference" "#PWR0208" (at 80.01 156.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 80.01 154.94 0)
@@ -2374,9 +2296,6 @@
     (pin "1" (uuid 0740c471-7aef-49bb-ab71-a4ad1d230a1e))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR07") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0208") (unit 1)
         )
@@ -2390,7 +2309,7 @@
   (symbol (lib_id "Device:R") (at 102.87 56.515 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b10d1bf7-2cd2-433e-8e19-b7adee264561)
-    (property "Reference" "R1" (at 98.425 55.245 0)
+    (property "Reference" "R204" (at 98.425 55.245 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1Ohm" (at 98.425 57.15 0)
@@ -2409,9 +2328,6 @@
     (pin "1" (uuid 0826f31d-a17c-4541-a53b-97f99b6800e2))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "R1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R204") (unit 1)
         )
@@ -2425,7 +2341,7 @@
   (symbol (lib_id "Device:R") (at 109.855 165.735 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b1f16559-c43e-433e-8f11-08a43528f2c6)
-    (property "Reference" "R1" (at 109.855 160.655 90)
+    (property "Reference" "R208" (at 109.855 160.655 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1Ohm" (at 109.855 162.56 90)
@@ -2444,9 +2360,6 @@
     (pin "1" (uuid 173c778b-1932-42b0-a977-d1a1e1189ff9))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "R1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R208") (unit 1)
         )
@@ -2460,7 +2373,7 @@
   (symbol (lib_id "Device:R") (at 107.95 124.46 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b3aca5ae-299d-4eb3-8336-21068346edaa)
-    (property "Reference" "R1" (at 112.395 123.19 0)
+    (property "Reference" "R207" (at 112.395 123.19 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1Ohm" (at 112.395 125.095 0)
@@ -2479,9 +2392,6 @@
     (pin "1" (uuid d4d84c93-998b-464a-bd71-cc48399332c5))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "R1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "R207") (unit 1)
         )
@@ -2519,9 +2429,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "C1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C204") (unit 1)
         )
@@ -2559,9 +2466,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/8c16082e-d807-4397-bdb5-0f18b2aedd2d"
-          (reference "D503") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "D201") (unit 1)
         )
@@ -2575,7 +2479,7 @@
   (symbol (lib_id "power:GND") (at 125.73 60.325 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c0dd07d5-2349-49fc-8c4f-ad4bfc2ae536)
-    (property "Reference" "#PWR06" (at 125.73 66.675 0)
+    (property "Reference" "#PWR0212" (at 125.73 66.675 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 125.73 65.405 0)
@@ -2590,9 +2494,6 @@
     (pin "1" (uuid 696c6d48-293c-4e8c-8d78-2a66b5328dd6))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR06") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0212") (unit 1)
         )
@@ -2606,7 +2507,7 @@
   (symbol (lib_id "power:GND") (at 118.745 176.53 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid cec26dd0-0dd5-4475-a010-eee35630f1e9)
-    (property "Reference" "#PWR06" (at 118.745 182.88 0)
+    (property "Reference" "#PWR0211" (at 118.745 182.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 118.745 181.61 0)
@@ -2621,9 +2522,6 @@
     (pin "1" (uuid ef5ea32f-e2dc-4079-af8e-06d4983fe85a))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR06") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0211") (unit 1)
         )
@@ -2695,9 +2593,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "C3") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C202") (unit 1)
         )
@@ -2711,7 +2606,7 @@
   (symbol (lib_id "power:GND") (at 67.31 175.895 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e321c644-b3a3-4b6f-bdd1-8a6ee95e3a80)
-    (property "Reference" "#PWR09" (at 67.31 182.245 0)
+    (property "Reference" "#PWR0204" (at 67.31 182.245 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 67.31 180.975 0)
@@ -2726,9 +2621,6 @@
     (pin "1" (uuid 80bd34d7-1ee5-4641-8d0a-b8a385e1b10d))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR09") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0204") (unit 1)
         )
@@ -2767,9 +2659,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "Q1") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "Q201") (unit 1)
         )
@@ -2844,9 +2733,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "C2") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "C203") (unit 1)
         )
@@ -2860,7 +2746,7 @@
   (symbol (lib_id "power:GND") (at 220.345 124.46 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ff4e200d-ccfe-4e6a-9511-5b125777a380)
-    (property "Reference" "#PWR06" (at 220.345 130.81 0)
+    (property "Reference" "#PWR0217" (at 220.345 130.81 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 220.345 129.54 0)
@@ -2875,9 +2761,6 @@
     (pin "1" (uuid 613b6119-ecd0-4ece-b5e0-52db31f6464b))
     (instances
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73"
-          (reference "#PWR06") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/c6b1f370-dae1-43cb-9760-807447033247"
           (reference "#PWR0217") (unit 1)
         )

@@ -1140,9 +1140,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/e9e13a02-4398-4024-aa40-c10eab1b7d89"
-          (reference "#PWR0403") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/8c16082e-d807-4397-bdb5-0f18b2aedd2d"
           (reference "#PWR0507") (unit 1)
         )
@@ -1312,9 +1309,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/e9e13a02-4398-4024-aa40-c10eab1b7d89"
-          (reference "#PWR0403") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/8c16082e-d807-4397-bdb5-0f18b2aedd2d"
           (reference "#PWR0506") (unit 1)
         )
@@ -1915,9 +1909,6 @@
         )
       )
       (project "leddimmer-hw"
-        (path "/fd5aadf0-8741-496f-b26f-a902b435df73/e9e13a02-4398-4024-aa40-c10eab1b7d89"
-          (reference "#PWR0403") (unit 1)
-        )
         (path "/fd5aadf0-8741-496f-b26f-a902b435df73/8c16082e-d807-4397-bdb5-0f18b2aedd2d"
           (reference "#PWR0505") (unit 1)
         )
