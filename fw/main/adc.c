@@ -34,7 +34,7 @@ static adc_source_t adc_sources[4] = {
     ADC_SOURCE(ADC_UNIT_1, 2),
     ADC_SOURCE(ADC_UNIT_1, 3),
     ADC_SOURCE(ADC_UNIT_1, 4),
-    ADC_SOURCE(ADC_UNIT_2, 0),
+    ADC_SOURCE(ADC_UNIT_1, 0),
 };
 
 #define ADC_OVERSAMPLING 4
@@ -52,7 +52,7 @@ typedef struct
 static TaskHandle_t s_task_handle;
 static SemaphoreHandle_t s_mutex;
 
-static adc_cali_handle_t s_cali_handles[2];
+static adc_cali_handle_t s_cali_handles[1];
 static adc_samples_t s_samples;
 
 static uint32_t min(uint32_t x, uint32_t y)
@@ -107,7 +107,7 @@ static void samples_from_intermediate(const samples_intermediate_t sample_interm
     // samples->drivers_drv_ma[1] = sample_current_sense(sample_from_intermediate(sample_intermediate[3]), 3, 50);
 
     samples->drivers_out_ma[0] = sample_current_sense(sample_from_intermediate(sample_intermediate[2]), 3, 50);
-    // samples->drivers_out_ma[1] = sample_current_sense(sample_from_intermediate(sample_intermediate[3]), 3, 50);
+    samples->drivers_out_ma[1] = sample_current_sense(sample_from_intermediate(sample_intermediate[3]), 3, 50);
 }
 
 static bool IRAM_ATTR s_conv_done_cb(adc_continuous_handle_t handle, const adc_continuous_evt_data_t* edata, void* user_data)
@@ -174,10 +174,6 @@ static void adc_task(void* arg)
         .bitwidth = ADC_BIT_WIDTH,
     };
     ESP_ERROR_CHECK(adc_cali_create_scheme_curve_fitting(&cali_config, &s_cali_handles[0]));
-    
-    cali_config.unit_id = ADC_UNIT_2;
-    ESP_ERROR_CHECK(adc_cali_create_scheme_curve_fitting(&cali_config, &s_cali_handles[1]));
-
     ESP_ERROR_CHECK(adc_continuous_start(handle));
 
     sample_intermediate_t samples[SAMPLES_COUNT];
