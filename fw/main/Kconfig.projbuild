@@ -1,0 +1,13 @@
+menu "Led Dimmer"
+    menu "Wifi"
+        config WIFI_SSID
+            string "SSID"
+        config WIFI_PASSPHRASE
+            string "Passphrase"
+    endmenu
+    menu "MQTT"
+        config MQTT_BROKER_URL
+            string "Broker URL"
+            default "mqtt://mqtt.lan"
+    endmenu
+endmenu
