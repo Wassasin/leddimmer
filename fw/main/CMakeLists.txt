@@ -7,6 +7,7 @@ idf_component_register(
         "events.c"
         "http_server.c"
         "led.c"
+        "util/led_strip_encoder.c"
         "mqtt.c"
         "performance.c"
         "periodic.c"
