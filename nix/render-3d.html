@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Led dimmer</title>
+    <script type='text/javascript' src='//www.x3dom.org/download/x3dom.js'> </script>
+    <link rel='stylesheet' type='text/css' href='//www.x3dom.org/download/x3dom.css'></link>
+  </head>
+  <body>
+    <x3d width='1200px' height='800px'>
+      <scene>
+	      <Environment frustumCulling='true' smallFeatureCulling='true' smallFeatureThreshold="7.5" lowPriorityCulling="true" lowPriorityThreshold="2"></Environment>
+        <Transform scale="2 2 2">
+          <Transform translation="-0.15 0.1 0">
+            <Inline url="leddimmer.x3d" />
+          </Transform>
+        </Transform>
+      </scene>
+    </x3d>
+  </body>
+</html>         
