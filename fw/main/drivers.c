@@ -34,7 +34,7 @@ static esp_err_t channel_config(ledc_channel_t channel, int gpio_num)
         .timer_sel = LEDC_TIMER,
         .intr_type = LEDC_INTR_DISABLE,
         .gpio_num = gpio_num,
-        .duty = 0x00, // Set duty to 100% (inverted)
+        .duty = 0x00,
         .hpoint = 0
     };
     return ledc_channel_config(&config);
@@ -43,9 +43,12 @@ static esp_err_t channel_config(ledc_channel_t channel, int gpio_num)
 static bool drivers_persist_channel_unsafe(ledc_channel_t channel, driver_pwm11_t duty)
 {
     if (duty == 0x00) {
-        ESP_ERROR_CHECK(ledc_stop(LEDC_MODE, channel, 0)); // Inverted
+        // ESP_ERROR_CHECK(ledc_stop(LEDC_MODE, channel, 0));
+
+        ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, channel, 1));
+        ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, channel));
     } else {
-        ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, channel, duty)); // Inverted
+        ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, channel, duty));
         ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, channel));
     }
     return duty > 0;
@@ -53,7 +56,7 @@ static bool drivers_persist_channel_unsafe(ledc_channel_t channel, driver_pwm11_
 
 static void drivers_persist_unsafe(void)
 {
-    bool drivers[2] = {0};
+    bool drivers[2] = { 0 };
 
     drivers[0] = drivers_persist_channel_unsafe(LEDC_DRIVER1_CHANNEL, s_state[0]);
     drivers[1] = drivers_persist_channel_unsafe(LEDC_DRIVER2_CHANNEL, s_state[1]);
@@ -61,20 +64,25 @@ static void drivers_persist_unsafe(void)
     gpio_set_level(GPIO_DRIVER1_EN, drivers[0]);
     gpio_set_level(GPIO_DRIVER2_EN, drivers[1]);
 
-    // // TODO Temporary emotes until controller is written
-    // if (any) {
-    //     led_set_color((rgb_t) {
-    //         .r = 0x00,
-    //         .g = 0x10,
-    //         .b = 0x00,
-    //     });
-    // } else {
-    //     led_set_color((rgb_t) {
-    //         .r = 0x10,
-    //         .g = 0x00,
-    //         .b = 0x00,
-    //     });
-    // }
+    bool any = false;
+    for (size_t i = 0; i < 2; ++i) {
+        any |= drivers[i];
+    }
+
+    // TODO Temporary emotes until controller is written
+    if (any) {
+        led_set_color((rgb_t) {
+            .r = 0x00,
+            .g = 0x10,
+            .b = 0x00,
+        });
+    } else {
+        led_set_color((rgb_t) {
+            .r = 0x10,
+            .g = 0x00,
+            .b = 0x00,
+        });
+    }
 }
 
 esp_err_t drivers_init(void)

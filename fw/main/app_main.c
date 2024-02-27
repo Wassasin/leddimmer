@@ -23,7 +23,7 @@ void app_main(void)
 
     ESP_ERROR_CHECK(led_init());
     led_set_color((rgb_t) {
-        .r = 0x01,
+        .r = 0x10,
         .g = 0x00,
         .b = 0x00,
     });

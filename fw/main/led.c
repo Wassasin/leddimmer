@@ -10,8 +10,8 @@
 #define TAG "led"
 
 #define RMT_LED_STRIP_RESOLUTION_HZ 10000000 // 10MHz resolution, 1 tick = 0.1us (led strip needs a high resolution)
-#define RMT_LED_STRIP_GPIO_NUM 0
-#define LED_NUMBERS 10
+#define RMT_LED_STRIP_GPIO_NUM 10
+#define LED_NUMBERS 1
 
 static SemaphoreHandle_t s_mutex;
 static uint8_t led_strip_pixels[LED_NUMBERS * 3];
@@ -46,8 +46,8 @@ void led_set_color(rgb_t rgb)
 {
     xSemaphoreTake(s_mutex, portMAX_DELAY);
 
-    led_strip_pixels[0] = rgb.r;
-    led_strip_pixels[1] = rgb.g;
+    led_strip_pixels[0] = rgb.g;
+    led_strip_pixels[1] = rgb.r;
     led_strip_pixels[2] = rgb.b;
 
     rmt_transmit_config_t tx_config = {
@@ -56,6 +56,8 @@ void led_set_color(rgb_t rgb)
 
     ESP_ERROR_CHECK(rmt_transmit(m_led_chan, m_led_encoder, led_strip_pixels, sizeof(led_strip_pixels), &tx_config));
     ESP_ERROR_CHECK(rmt_tx_wait_all_done(m_led_chan, portMAX_DELAY));
+
+    vTaskDelay(pdMS_TO_TICKS(10));
 
     xSemaphoreGive(s_mutex);
 }
