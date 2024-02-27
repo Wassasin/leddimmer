@@ -12,8 +12,8 @@
 #include <sdkconfig.h>
 
 #include "adc.h"
-#include "performance.h"
 #include "drivers.h"
+#include "performance.h"
 
 #define TAG "data"
 
@@ -142,7 +142,7 @@ esp_err_t data_power_to_json(cJSON* root)
 esp_err_t data_duty_to_json(cJSON* root)
 {
     drivers_pwm11_t drivers;
-    drivers_fetch(drivers);
+    drivers_fetch(&drivers);
 
     cJSON_AddNumberToObject(root, "driver1_pwm11", drivers[0]);
     cJSON_AddNumberToObject(root, "driver2_pwm11", drivers[1]);

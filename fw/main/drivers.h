@@ -12,4 +12,6 @@ typedef driver_pwm11_t drivers_pwm11_t[2];
 esp_err_t drivers_init(void);
 
 esp_err_t drivers_command(uint8_t driver_i, const driver_pwm11_t duty);
-esp_err_t drivers_fetch(drivers_pwm11_t duty_out);
+void drivers_fetch(drivers_pwm11_t* duty_out);
+
+void drivers_update(void);

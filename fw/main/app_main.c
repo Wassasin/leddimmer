@@ -39,5 +39,7 @@ void app_main(void)
 
     ESP_ERROR_CHECK(periodic_init());
 
+    ESP_ERROR_CHECK(power_startup());
+
     ESP_LOGI(TAG, "Device initialized, running event loop");
 }

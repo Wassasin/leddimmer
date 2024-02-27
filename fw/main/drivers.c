@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "led.h"
+#include "power.h"
 #include "util.h"
 
 #define TAG "drivers"
@@ -22,6 +23,26 @@
 #define GPIO_DRIVER2_PWM (9)
 #define GPIO_DRIVER1_EN (6)
 #define GPIO_DRIVER2_EN (7)
+
+typedef struct
+{
+    gpio_num_t high_side_gpio_num;
+    gpio_num_t low_side_gpio_num;
+    ledc_channel_t ledc_channel;
+} driver_description_t;
+
+static const driver_description_t s_descriptions[DRIVERS_COUNT] = {
+    {
+        .high_side_gpio_num = GPIO_DRIVER1_EN,
+        .low_side_gpio_num = GPIO_DRIVER1_PWM,
+        .ledc_channel = LEDC_DRIVER1_CHANNEL,
+    },
+    {
+        .high_side_gpio_num = GPIO_DRIVER2_EN,
+        .low_side_gpio_num = GPIO_DRIVER2_PWM,
+        .ledc_channel = LEDC_DRIVER2_CHANNEL,
+    }
+};
 
 static drivers_pwm11_t s_state;
 static SemaphoreHandle_t s_mutex;
@@ -43,10 +64,7 @@ static esp_err_t channel_config(ledc_channel_t channel, int gpio_num)
 static bool drivers_persist_channel_unsafe(ledc_channel_t channel, driver_pwm11_t duty)
 {
     if (duty == 0x00) {
-        // ESP_ERROR_CHECK(ledc_stop(LEDC_MODE, channel, 0));
-
-        ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, channel, 1));
-        ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, channel));
+        ESP_ERROR_CHECK(ledc_stop(LEDC_MODE, channel, 0));
     } else {
         ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, channel, duty));
         ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, channel));
@@ -56,21 +74,26 @@ static bool drivers_persist_channel_unsafe(ledc_channel_t channel, driver_pwm11_
 
 static void drivers_persist_unsafe(void)
 {
-    bool drivers[2] = { 0 };
+    bool any_drivers_enabled = false;
 
-    drivers[0] = drivers_persist_channel_unsafe(LEDC_DRIVER1_CHANNEL, s_state[0]);
-    drivers[1] = drivers_persist_channel_unsafe(LEDC_DRIVER2_CHANNEL, s_state[1]);
+    for (size_t driver_i = 0; driver_i < DRIVERS_COUNT; ++driver_i) {
+        const driver_description_t* description = &s_descriptions[driver_i];
 
-    gpio_set_level(GPIO_DRIVER1_EN, drivers[0]);
-    gpio_set_level(GPIO_DRIVER2_EN, drivers[1]);
+        driver_pwm11_t computed_pwm = 0;
+        if (power_low_side_unlocked(driver_i)) {
+            computed_pwm = s_state[driver_i];
+        }
 
-    bool any = false;
-    for (size_t i = 0; i < 2; ++i) {
-        any |= drivers[i];
+        bool enabled_low_side = drivers_persist_channel_unsafe(description->ledc_channel, computed_pwm);
+        bool enabled_high_side = power_high_side_unlocked(driver_i);
+
+        gpio_set_level(description->high_side_gpio_num, enabled_high_side);
+
+        any_drivers_enabled |= enabled_low_side & enabled_high_side;
     }
 
     // TODO Temporary emotes until controller is written
-    if (any) {
+    if (any_drivers_enabled) {
         led_set_color((rgb_t) {
             .r = 0x00,
             .g = 0x10,
@@ -133,11 +156,16 @@ esp_err_t drivers_command(uint8_t driver_i, driver_pwm11_t duty)
     return ESP_OK;
 }
 
-esp_err_t drivers_fetch(drivers_pwm11_t duty_out)
+void drivers_update(void)
 {
     xSemaphoreTake(s_mutex, portMAX_DELAY);
-    memcpy(duty_out, s_state, sizeof(s_state));
+    drivers_persist_unsafe();
     xSemaphoreGive(s_mutex);
+}
 
-    return ESP_OK;
+void drivers_fetch(drivers_pwm11_t* duty_out)
+{
+    xSemaphoreTake(s_mutex, portMAX_DELAY);
+    memcpy(*duty_out, s_state, sizeof(s_state));
+    xSemaphoreGive(s_mutex);
 }
