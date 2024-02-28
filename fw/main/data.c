@@ -14,6 +14,7 @@
 #include "adc.h"
 #include "drivers.h"
 #include "performance.h"
+#include "power.h"
 
 #define TAG "data"
 
@@ -124,17 +125,28 @@ static void sample_to_json(cJSON* root, const char* name, const adc_sample_t* sa
 
 esp_err_t data_power_to_json(cJSON* root)
 {
+    cJSON* state = cJSON_CreateObject();
+    cJSON_AddItemToObject(root, "state", state);
+
+    power_logic_states_t power_logic_states;
+    power_get_logic_states(&power_logic_states);
+    cJSON_AddStringToObject(state, "driver1", power_logic_state_to_str(power_logic_states[0]));
+    cJSON_AddStringToObject(state, "driver2", power_logic_state_to_str(power_logic_states[1]));
+
+    cJSON* adc = cJSON_CreateObject();
+    cJSON_AddItemToObject(root, "adc", adc);
+
     adc_samples_t samples;
     adc_fetch(&samples);
 
-    sample_to_json(root, "vbus_mv", &samples.vbus_mv);
-    sample_to_json(root, "vdrv_mv", &samples.vdrv_mv);
+    sample_to_json(adc, "vbus_mv", &samples.vbus_mv);
+    sample_to_json(adc, "vdrv_mv", &samples.vdrv_mv);
 
-    // sample_to_json(root, "driver1_drv_ma", &samples.drivers_drv_ma[0]);
-    // sample_to_json(root, "driver2_drv_ma", &samples.drivers_drv_ma[1]);
+    // sample_to_json(adc, "driver1_drv_ma", &samples.drivers_drv_ma[0]);
+    // sample_to_json(adc, "driver2_drv_ma", &samples.drivers_drv_ma[1]);
 
-    sample_to_json(root, "driver1_out_ma", &samples.drivers_out_ma[0]);
-    sample_to_json(root, "driver2_out_ma", &samples.drivers_out_ma[1]);
+    sample_to_json(adc, "driver1_out_ma", &samples.drivers_out_ma[0]);
+    sample_to_json(adc, "driver2_out_ma", &samples.drivers_out_ma[1]);
 
     return ESP_OK;
 }

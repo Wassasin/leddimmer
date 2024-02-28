@@ -1,5 +1,6 @@
 #include "power.h"
 
+#include "adc.h"
 #include "drivers.h"
 #include "util.h"
 
@@ -15,8 +16,10 @@
 #define GPIO_DRIVER2_STAT (21)
 
 #define FAULT_TIMEOUT_US 1000000
-#define RAMPING_TIMEOUT_US 10000
+#define RAMPING_TIMEOUT_US 100000
 #define FAULT_LIMIT 10
+
+#define POWER_UVLO_MV 23000;
 
 static SemaphoreHandle_t s_mutex;
 static SemaphoreHandle_t s_sem;
@@ -25,15 +28,6 @@ typedef struct
 {
     gpio_num_t stat_gpio_num;
 } power_description_t;
-
-typedef enum {
-    STATE_OFF,
-    STATE_RAMPING,
-    STATE_ENABLED,
-    STATE_DISCHARGING,
-    STATE_FAULT_COOLDOWN,
-    STATE_FAULT_BLOCKED,
-} power_logic_state_e;
 
 typedef struct
 {
@@ -58,11 +52,13 @@ static void IRAM_ATTR gpio_isr_handler(void* arg)
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
-static const char* power_logic_state_to_str(power_logic_state_e state)
+const char* power_logic_state_to_str(power_logic_state_e state)
 {
     switch (state) {
     case STATE_OFF:
         return "off";
+    case STATE_UVLO:
+        return "uvlo";
     case STATE_RAMPING:
         return "ramping";
     case STATE_ENABLED:
@@ -86,15 +82,27 @@ static void power_machine_enter_fault(power_state_t* state)
         state->fault_count++;
     } else {
         state->timeout_us = UINT64_MAX;
-        state->fault_count = 0;
         state->logic_state = STATE_FAULT_BLOCKED;
     }
 }
 
+static bool power_machine_uvlo(void)
+{
+    adc_samples_t samples;
+    adc_fetch(&samples);
+
+    return samples.vbus_mv.rms < POWER_UVLO_MV;
+}
+
 static void power_machine_enter_ramping(power_state_t* state)
 {
-    state->timeout_us = esp_timer_get_time() + RAMPING_TIMEOUT_US;
-    state->logic_state = STATE_RAMPING;
+    if (power_machine_uvlo()) {
+        state->logic_state = STATE_UVLO;
+    } else {
+        state->timeout_us
+            = esp_timer_get_time() + RAMPING_TIMEOUT_US;
+        state->logic_state = STATE_RAMPING;
+    }
 }
 
 static bool power_timeout_passed(power_state_t* state)
@@ -110,7 +118,7 @@ static void power_machine_run(size_t system_i, power_state_t* state, const drive
 {
     const power_description_t* description = &s_descriptions[system_i];
 
-    bool stat_level = !gpio_get_level(description->stat_gpio_num);
+    bool stat_level = gpio_get_level(description->stat_gpio_num);
 
     if (stat_level != state->level) {
         ESP_LOGD(TAG, "%u => %s", system_i, stat_level ? "on" : "off");
@@ -122,10 +130,20 @@ static void power_machine_run(size_t system_i, power_state_t* state, const drive
     power_logic_state_e prev_logic_state = state->logic_state;
     switch (state->logic_state) {
     case STATE_OFF:
+        state->fault_count = 0;
+
         if (requested) {
             power_machine_enter_ramping(state);
             break;
         }
+        break;
+    case STATE_UVLO:
+        if (!requested) {
+            state->logic_state = STATE_OFF;
+            break;
+        }
+
+        power_machine_enter_ramping(state);
         break;
     case STATE_RAMPING:
         if (!requested) {
@@ -133,26 +151,28 @@ static void power_machine_run(size_t system_i, power_state_t* state, const drive
             break;
         }
 
-        if (stat_level) {
-            state->logic_state = STATE_ENABLED;
-            break;
-        }
-
         if (power_timeout_passed(state)) {
-            // TODO check input power
-            power_machine_enter_fault(state);
-            break;
+            if (!stat_level) {
+                // In this phase we expect load less than I_OL, hence STATUS=LOW.
+                state->logic_state = STATE_ENABLED;
+                break;
+            } else {
+                // If we see STATUS=HIGH we have high load, even though low side driver is off.
+                power_machine_enter_fault(state);
+                break;
+            }
         }
 
         break;
     case STATE_ENABLED:
-        if (!stat_level) {
-            power_machine_enter_fault(state);
+        // Note: we do not check stat/fault here, because I_OL leads to it being unusable in low current use.
+        if (!requested) {
+            state->logic_state = STATE_DISCHARGING;
             break;
         }
 
-        if (!requested) {
-            state->logic_state = STATE_DISCHARGING;
+        if (power_machine_uvlo()) {
+            state->logic_state = STATE_UVLO;
             break;
         }
         break;
@@ -168,8 +188,13 @@ static void power_machine_run(size_t system_i, power_state_t* state, const drive
         }
         break;
     case STATE_FAULT_COOLDOWN:
-        if (!requested || power_timeout_passed(state)) {
+        if (!requested) {
             state->logic_state = STATE_OFF;
+            break;
+        }
+
+        if (power_timeout_passed(state)) {
+            power_machine_enter_ramping(state);
             break;
         }
         break;
@@ -283,4 +308,13 @@ bool power_low_side_unlocked(uint8_t driver_i)
     xSemaphoreGive(s_mutex);
 
     return unlocked;
+}
+
+void power_get_logic_states(power_logic_states_t* logic_states_out)
+{
+    xSemaphoreTake(s_mutex, portMAX_DELAY);
+    for (size_t driver_i = 0; driver_i < DRIVERS_COUNT; ++driver_i) {
+        (*logic_states_out)[driver_i] = s_state[driver_i].logic_state;
+    }
+    xSemaphoreGive(s_mutex);
 }
