@@ -3,6 +3,7 @@
 #include "adc.h"
 #include "drivers.h"
 #include "util.h"
+#include "events.h"
 
 #include <driver/gpio.h>
 #include <esp_log.h>
@@ -213,6 +214,9 @@ static void power_machine_run(size_t system_i, power_state_t* state, const drive
             system_i,
             power_logic_state_to_str(prev_logic_state),
             power_logic_state_to_str(state->logic_state));
+
+        ESP_ERROR_CHECK(esp_event_post(EVENTS, EVENT_POWER_STATE,
+            NULL, 0, portMAX_DELAY));
     }
 }
 

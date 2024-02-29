@@ -33,10 +33,16 @@ static void mqtt_event_handler(void* handler_args, esp_event_base_t base, int32_
         ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
         esp_mqtt_client_subscribe(client, m_topics.duty, 0);
         m_connected = true;
+
+        ESP_ERROR_CHECK(esp_event_post(EVENTS, EVENT_MQTT_ONLINE,
+            NULL, 0, portMAX_DELAY));
         break;
     case MQTT_EVENT_DISCONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
         m_connected = false;
+
+        esp_event_post(EVENTS, EVENT_MQTT_OFFLINE,
+            NULL, 0, portMAX_DELAY); // Allow failures to post event, something is blocking the queue sometimes.
         break;
     case MQTT_EVENT_DATA:
         if (strcmp(event->topic, m_topics.duty)) {
@@ -89,6 +95,10 @@ static void mqtt_status_handler(void* _event_handler_arg,
         esp_mqtt_client_stop(m_client);
         break;
     }
+}
+
+bool mqtt_is_connected(void) {
+    return m_connected;
 }
 
 esp_err_t mqtt_init(void)

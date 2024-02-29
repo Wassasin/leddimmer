@@ -4,6 +4,7 @@ idf_component_register(
         "adc.c"
         "data.c"
         "drivers.c"
+        "emotes.c"
         "events.c"
         "http_server.c"
         "led.c"

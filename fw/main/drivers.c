@@ -5,7 +5,6 @@
 #include <freertos/semphr.h>
 #include <string.h>
 
-#include "led.h"
 #include "power.h"
 #include "util.h"
 
@@ -74,8 +73,6 @@ static bool drivers_persist_channel_unsafe(ledc_channel_t channel, driver_pwm11_
 
 static void drivers_persist_unsafe(void)
 {
-    bool any_drivers_enabled = false;
-
     for (size_t driver_i = 0; driver_i < DRIVERS_COUNT; ++driver_i) {
         const driver_description_t* description = &s_descriptions[driver_i];
 
@@ -84,27 +81,10 @@ static void drivers_persist_unsafe(void)
             computed_pwm = s_state[driver_i];
         }
 
-        bool enabled_low_side = drivers_persist_channel_unsafe(description->ledc_channel, computed_pwm);
+        drivers_persist_channel_unsafe(description->ledc_channel, computed_pwm);
         bool enabled_high_side = power_high_side_unlocked(driver_i);
 
         gpio_set_level(description->high_side_gpio_num, enabled_high_side);
-
-        any_drivers_enabled |= enabled_low_side & enabled_high_side;
-    }
-
-    // TODO Temporary emotes until controller is written
-    if (any_drivers_enabled) {
-        led_set_color((rgb_t) {
-            .r = 0x00,
-            .g = 0x10,
-            .b = 0x00,
-        });
-    } else {
-        led_set_color((rgb_t) {
-            .r = 0x10,
-            .g = 0x00,
-            .b = 0x00,
-        });
     }
 }
 

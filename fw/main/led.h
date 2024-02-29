@@ -8,7 +8,7 @@ typedef union {
         uint8_t g;
         uint8_t b;
     };
-    uint8_t buf;
+    uint8_t buf[3];
 } rgb_t;
 
 esp_err_t led_init(void);
